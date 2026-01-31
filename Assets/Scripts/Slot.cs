@@ -6,19 +6,31 @@ using UnityEngine;
 public class Slot
 {
     public GameObject beginWith;
+    public GameObject beginMask;
     public GameObject objAt;
     public Vector3 pos;
 
     public void Initialize()
     {
-        GameObject c = GameObject.Instantiate(beginWith);
-        c.transform.parent = null;
-        c.transform.position = pos;
-        objAt = c;
-
-        if (c.GetComponent<SlotFollowerScript>())
+        if (beginWith)
         {
-            c.GetComponent<SlotFollowerScript>().ChangeSlot(this);
+            GameObject c = GameObject.Instantiate(beginWith);
+            c.transform.parent = null;
+            c.transform.position = pos;
+            objAt = c;
+
+            if (c.GetComponent<SlotFollowerScript>())
+            {
+                c.GetComponent<SlotFollowerScript>().ChangeSlot(this);
+                Debug.Log("fucked up");
+            }
+
+            if (beginMask)
+            {
+                GameObject m = GameObject.Instantiate(beginMask);
+                m.transform.parent = c.transform;
+                m.transform.localPosition = Vector3.zero;
+            }
         }
     }
 }
