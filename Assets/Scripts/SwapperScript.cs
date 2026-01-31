@@ -10,6 +10,8 @@ public class SwapperScript : MonoBehaviour
 
     void Update()
     {
+        if (!WinConditionScript.Singleton || WinConditionScript.Singleton.levelComplete) return;
+
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
 
@@ -24,7 +26,12 @@ public class SwapperScript : MonoBehaviour
                 // Someone highlighted...
                 if (hitObject.GetComponent<SlotFollowerScript>())
                 {
+                    SlotFollowerScript hitsf = hitObject.GetComponent<SlotFollowerScript>();
+
                     bool canSwap = true;
+
+                    // Don't swap with lover!
+                    if (hitObject.GetComponent<LoverScript>()) canSwap = false;
 
                     // Don't swap if too far!
                     if (canSwap && _heldObject.GetComponent<SwappableScript>().swapRange < Vector3.Distance(_heldObject.transform.position, hitObject.transform.position)) canSwap = false;
@@ -43,10 +50,10 @@ public class SwapperScript : MonoBehaviour
                     {
                         if (canSwap)
                         {
-                            Slot hitSlot = hitObject.GetComponent<SlotFollowerScript>().GetSlot();
+                            Slot hitSlot = hitsf.GetSlot();
                             Slot heldSlot = _heldObject.GetComponent<SlotFollowerScript>().GetSlot();
 
-                            hitObject.GetComponent<SlotFollowerScript>().ChangeSlot(heldSlot);
+                            hitsf.ChangeSlot(heldSlot);
                             _heldObject.GetComponent<SlotFollowerScript>().ChangeSlot(hitSlot);
                         }
                         _heldObject = null;

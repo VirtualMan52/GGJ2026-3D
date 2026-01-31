@@ -10,6 +10,8 @@ public class Slot
     public GameObject objAt;
     public Vector3 pos;
 
+    public RingScript ring;
+
     public void Initialize()
     {
         if (beginWith)
