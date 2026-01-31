@@ -9,9 +9,6 @@ public class SwapperScript : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(_heldObject);
-
-
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
 
@@ -23,39 +20,38 @@ public class SwapperScript : MonoBehaviour
 
             if (_heldObject)
             {
-                if (Mouse.current.leftButton.ReadValue() < 0.1)
+                bool canSwap = true;
+
+                // Can you swap?
+                if (!hitObject.GetComponent<SlotFollowerScript>()) canSwap = false;
+
+                // Don't swap if too far!
+                if (canSwap && _heldObject.GetComponent<SwappableScript>().swapRange < Vector3.Distance(_heldObject.transform.position,hitObject.transform.position)) canSwap = false;
+
+                if (canSwap) hitObject.GetComponent<SlotFollowerScript>().highlight = 2; // Highlight item if you can swap!
+                if (Mouse.current.leftButton.ReadValue() < 0.1) // On release...
                 {
-                    if (hitObject.GetComponent<SlotFollowerScript>())
+                    if (canSwap)
                     {
-                        bool canSwap = true;
+                        Slot hitSlot = hitObject.GetComponent<SlotFollowerScript>().GetSlot();
+                        Slot heldSlot = _heldObject.GetComponent<SlotFollowerScript>().GetSlot();
 
-                        // Don't swap if too far!
-                        if (_heldObject.GetComponent<SwappableScript>().swapRange < Vector3.Distance(_heldObject.transform.position,hitObject.transform.position)) canSwap = false;
-
-                        if (canSwap)
-                        {
-                            Slot hitSlot = hitObject.GetComponent<SlotFollowerScript>().GetSlot();
-                            Slot heldSlot = _heldObject.GetComponent<SlotFollowerScript>().GetSlot();
-
-                            hitObject.GetComponent<SlotFollowerScript>().ChangeSlot(heldSlot);
-                            _heldObject.GetComponent<SlotFollowerScript>().ChangeSlot(hitSlot);
-                        }
+                        hitObject.GetComponent<SlotFollowerScript>().ChangeSlot(heldSlot);
+                        _heldObject.GetComponent<SlotFollowerScript>().ChangeSlot(hitSlot);
                     }
-
                     _heldObject = null;
                 }
             } else
             {
-                if (hitObject.GetComponent<SlotFollowerScript>() && hitObject.GetComponent<SwappableScript>() && Mouse.current.leftButton.ReadValue() > 0)
+                if (hitObject.GetComponent<SlotFollowerScript>() && hitObject.GetComponent<SwappableScript>()) 
                 {
-                    _heldObject = hitObject;
+                    hitObject.GetComponent<SlotFollowerScript>().highlight = 2;
+                    if (Mouse.current.leftButton.ReadValue() > 0) _heldObject = hitObject;
                 }
             }
         }
 
-        if (_heldObject && Mouse.current.leftButton.ReadValue() < 0.1)
-        {
-            _heldObject = null;
-        }
+        if (_heldObject) _heldObject.GetComponent<SlotFollowerScript>().highlight = 2;
+        if (_heldObject && Mouse.current.leftButton.ReadValue() < 0.1) _heldObject = null;
     }
 }
