@@ -5,31 +5,27 @@ public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private GameObject canvasStarterMenu;
     [SerializeField] private GameObject canvasLevelMenu;
-    [SerializeField] private GameObject canvasOptionsMenu;
 
+    public GameObject AudioPrefab;
 
     public void PlayGame(string Level1)
     {
+        if (VolumeSettings.settingsOpen) return;
         SceneManager.LoadScene(Level1);
     }
 
     public void LevelSectionOpenning()
-    {    
+    {
+        if (VolumeSettings.settingsOpen) return;
         canvasLevelMenu.SetActive(true);
         canvasStarterMenu.SetActive(false);
-        canvasOptionsMenu.SetActive(false);
     }
 
     
 
     public void OptionsMenuOpenning()
     {
-        if(canvasLevelMenu != null)
-        {
-            canvasLevelMenu.SetActive(false);
-        }
-        canvasStarterMenu.SetActive(false);
-        canvasOptionsMenu.SetActive(true);
+        if (!VolumeSettings.settingsOpen) Instantiate(AudioPrefab);
     }
     
     public void ReturnAction()
@@ -39,7 +35,6 @@ public class SceneLoader : MonoBehaviour
             canvasLevelMenu.SetActive(false);
         }
         canvasStarterMenu.SetActive(true);
-        canvasOptionsMenu.SetActive(false);
     }
 
     public void LevelClicking(string LevelNumber)

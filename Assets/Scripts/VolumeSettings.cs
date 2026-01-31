@@ -11,9 +11,11 @@ public class VolumeSettings : MonoBehaviour
     public const string MIXER_MUSIC = "MusicVolume";
     public const string MIXER_SFX = "SFXVolume";
 
+    public static bool settingsOpen;
 
     void Awake()
     {
+        settingsOpen = true;
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
     }
@@ -35,5 +37,11 @@ public class VolumeSettings : MonoBehaviour
     void SetSFXVolume(float value)
     {
         mixer.SetFloat(MIXER_SFX, Mathf.Log10(value) * 20);
+    }
+
+    public void Close()
+    {
+        settingsOpen = false;
+        Destroy(gameObject);
     }
 }

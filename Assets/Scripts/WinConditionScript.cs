@@ -6,6 +6,7 @@ public class WinConditionScript : MonoBehaviour
     public List<LoverScript> lovers = new List<LoverScript>();
 
     public bool levelComplete = false;
+    public GameObject UIPrefab;
 
     private static WinConditionScript _singleton;
     public static WinConditionScript Singleton
@@ -26,7 +27,7 @@ public class WinConditionScript : MonoBehaviour
         if (!levelComplete)
         {
             levelComplete = CheckLevelComplete();
-            if (levelComplete) Debug.Log("Completed!");
+            if (levelComplete) Instantiate(UIPrefab);
         }
     }
 
