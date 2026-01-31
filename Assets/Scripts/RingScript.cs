@@ -12,12 +12,26 @@ public class RingScript : MonoBehaviour
 
     public Slot[] _slots = new Slot[0];
 
+    public void Awake()
+    {
+        SetSlots();
+        for (int i = 0; i < _slots.Length; i++)
+        {
+            Slot s = _slots[i];
+            s.Initialize();
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
         _currentOffset += Time.deltaTime * _rotationSpeed;
-        for (int i = 0; i < _slots.Length; i++)
+        SetSlots();
+    }
+
+    private void SetSlots()
+    {
+        for (int i = 0; i < _slots.Length; i++)
         {
             Slot s = _slots[i];
             s.pos = transform.position + ((Quaternion.Euler(0f, 360f / _slots.Length * i + _currentOffset + _angleOffset, 0f)) * Vector3.forward) * _radius;
