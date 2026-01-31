@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   resolution: 15
   width: 0.1
-  radius: 0.5
+  radius: 0
   line: {fileID: 5165435145058293533}
 --- !u!120 &5165435145058293533
 LineRenderer:
