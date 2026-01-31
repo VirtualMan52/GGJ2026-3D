@@ -22,7 +22,6 @@ public class Slot
             if (c.GetComponent<SlotFollowerScript>())
             {
                 c.GetComponent<SlotFollowerScript>().ChangeSlot(this);
-                Debug.Log("fucked up");
             }
 
             if (beginMask)

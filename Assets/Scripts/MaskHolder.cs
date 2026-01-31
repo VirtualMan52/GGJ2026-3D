@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class MaskHolder : MonoBehaviour
 {
-    public bool Stealable = false;
     public string maskID;
+    public Color gizmoColor;
 
     private void Update()
     {
         if (transform.localPosition != Vector3.zero)
         {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, transform.localPosition, Time.deltaTime * 0);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, 0.125f);
         }
     }
 }
