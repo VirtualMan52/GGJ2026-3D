@@ -5,6 +5,7 @@ public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private GameObject canvasStarterMenu;
     [SerializeField] private GameObject canvasLevelMenu;
+    [SerializeField] private GameObject canvasOptionsMenu;
 
 
     public void PlayGame(string Level1)
@@ -13,21 +14,32 @@ public class SceneLoader : MonoBehaviour
     }
 
     public void LevelSectionOpenning()
-    {
-        if(canvasStarterMenu != null)
-        {
-            canvasStarterMenu.SetActive(false);
-        }
-        if(canvasLevelMenu != null)
-        {
-            canvasLevelMenu.SetActive(true);
-        }
+    {    
+        canvasLevelMenu.SetActive(true);
+        canvasStarterMenu.SetActive(false);
+        canvasOptionsMenu.SetActive(false);
     }
 
+    
+
+    public void OptionsMenuOpenning()
+    {
+        if(canvasLevelMenu != null)
+        {
+            canvasLevelMenu.SetActive(false);
+        }
+        canvasStarterMenu.SetActive(false);
+        canvasOptionsMenu.SetActive(true);
+    }
+    
     public void ReturnAction()
     {
-        canvasLevelMenu.SetActive(false);
+        if(canvasLevelMenu != null)
+        {
+            canvasLevelMenu.SetActive(false);
+        }
         canvasStarterMenu.SetActive(true);
+        canvasOptionsMenu.SetActive(false);
     }
 
     public void LevelClicking(string LevelNumber)
