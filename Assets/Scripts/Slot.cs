@@ -15,5 +15,10 @@ public class Slot
         c.transform.parent = null;
         c.transform.position = pos;
         objAt = c;
+
+        if (c.GetComponent<SlotFollowerScript>())
+        {
+            c.GetComponent<SlotFollowerScript>().ChangeSlot(this);
+        }
     }
 }
