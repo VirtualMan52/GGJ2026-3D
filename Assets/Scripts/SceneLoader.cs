@@ -7,9 +7,9 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private GameObject canvasLevelMenu;
 
 
-    public void PlayGame(string EntryGameScene)
+    public void PlayGame(string Level1)
     {
-        SceneManager.LoadScene(EntryGameScene);
+        SceneManager.LoadScene(Level1);
     }
 
     public void LevelSectionOpenning()
@@ -22,15 +22,18 @@ public class SceneLoader : MonoBehaviour
         {
             canvasLevelMenu.SetActive(true);
         }
-        
+    }
 
+    public void ReturnAction()
+    {
+        canvasLevelMenu.SetActive(false);
+        canvasStarterMenu.SetActive(true);
     }
 
     public void LevelClicking(string LevelNumber)
     {
         SceneManager.LoadScene(LevelNumber);
     }
-
 
    public void QuitGame()
     {
