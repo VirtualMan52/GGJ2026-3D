@@ -533,13 +533,25 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6661364753378319358, guid: 8402bbeca2115334e974d4539848ff8c, type: 3}
+      propertyPath: _slots.Array.data[0].beginMask
+      value: 
+      objectReference: {fileID: 5685887982052600821, guid: ae6837122216e064ca42972b08869a38, type: 3}
+    - target: {fileID: 6661364753378319358, guid: 8402bbeca2115334e974d4539848ff8c, type: 3}
       propertyPath: _slots.Array.data[0].beginWith
       value: 
       objectReference: {fileID: 4726041562883102180, guid: 4b309111e441f904193cef63e9f55e6e, type: 3}
     - target: {fileID: 6661364753378319358, guid: 8402bbeca2115334e974d4539848ff8c, type: 3}
+      propertyPath: _slots.Array.data[1].beginMask
+      value: 
+      objectReference: {fileID: 5685887982052600821, guid: d6dd6bec59476254da331f1b69268f91, type: 3}
+    - target: {fileID: 6661364753378319358, guid: 8402bbeca2115334e974d4539848ff8c, type: 3}
       propertyPath: _slots.Array.data[1].beginWith
       value: 
       objectReference: {fileID: 4726041562883102180, guid: 4b309111e441f904193cef63e9f55e6e, type: 3}
+    - target: {fileID: 6661364753378319358, guid: 8402bbeca2115334e974d4539848ff8c, type: 3}
+      propertyPath: _slots.Array.data[2].beginMask
+      value: 
+      objectReference: {fileID: 5685887982052600821, guid: d6dd6bec59476254da331f1b69268f91, type: 3}
     - target: {fileID: 6661364753378319358, guid: 8402bbeca2115334e974d4539848ff8c, type: 3}
       propertyPath: _slots.Array.data[2].beginWith
       value: 
@@ -723,13 +735,25 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6661364753378319358, guid: 8402bbeca2115334e974d4539848ff8c, type: 3}
+      propertyPath: _slots.Array.data[0].beginMask
+      value: 
+      objectReference: {fileID: 5685887982052600821, guid: ae6837122216e064ca42972b08869a38, type: 3}
+    - target: {fileID: 6661364753378319358, guid: 8402bbeca2115334e974d4539848ff8c, type: 3}
       propertyPath: _slots.Array.data[0].beginWith
       value: 
       objectReference: {fileID: 4726041562883102180, guid: 19ff286d40a3bd246817709288e14c4c, type: 3}
     - target: {fileID: 6661364753378319358, guid: 8402bbeca2115334e974d4539848ff8c, type: 3}
+      propertyPath: _slots.Array.data[1].beginMask
+      value: 
+      objectReference: {fileID: 5685887982052600821, guid: ae6837122216e064ca42972b08869a38, type: 3}
+    - target: {fileID: 6661364753378319358, guid: 8402bbeca2115334e974d4539848ff8c, type: 3}
       propertyPath: _slots.Array.data[1].beginWith
       value: 
       objectReference: {fileID: 4726041562883102180, guid: 4b309111e441f904193cef63e9f55e6e, type: 3}
+    - target: {fileID: 6661364753378319358, guid: 8402bbeca2115334e974d4539848ff8c, type: 3}
+      propertyPath: _slots.Array.data[2].beginMask
+      value: 
+      objectReference: {fileID: 5685887982052600821, guid: ae6837122216e064ca42972b08869a38, type: 3}
     - target: {fileID: 6661364753378319358, guid: 8402bbeca2115334e974d4539848ff8c, type: 3}
       propertyPath: _slots.Array.data[2].beginWith
       value: 
