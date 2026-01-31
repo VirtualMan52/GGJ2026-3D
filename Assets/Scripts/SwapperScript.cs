@@ -27,11 +27,19 @@ public class SwapperScript : MonoBehaviour
                 {
                     if (hitObject.GetComponent<SlotFollowerScript>())
                     {
-                        Slot hitSlot = hitObject.GetComponent<SlotFollowerScript>().GetSlot();
-                        Slot heldSlot = _heldObject.GetComponent<SlotFollowerScript>().GetSlot();
+                        bool canSwap = true;
 
-                        hitObject.GetComponent<SlotFollowerScript>().ChangeSlot(heldSlot);
-                        _heldObject.GetComponent<SlotFollowerScript>().ChangeSlot(hitSlot);
+                        // Don't swap if too far!
+                        if (_heldObject.GetComponent<SwappableScript>().swapRange < Vector3.Distance(_heldObject.transform.position,hitObject.transform.position)) canSwap = false;
+
+                        if (canSwap)
+                        {
+                            Slot hitSlot = hitObject.GetComponent<SlotFollowerScript>().GetSlot();
+                            Slot heldSlot = _heldObject.GetComponent<SlotFollowerScript>().GetSlot();
+
+                            hitObject.GetComponent<SlotFollowerScript>().ChangeSlot(heldSlot);
+                            _heldObject.GetComponent<SlotFollowerScript>().ChangeSlot(hitSlot);
+                        }
                     }
 
                     _heldObject = null;
