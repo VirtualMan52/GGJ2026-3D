@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaskHolder
   Stealable: 0
   maskID: yellow
+  gizmoColor: {r: 1, g: 0.79823005, b: 0, a: 1}
 --- !u!1 &7057019276770770907
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,8 +42,15 @@ public class RingScript : MonoBehaviour
     {
         for (int i = 0; i < _slots.Length; i++)
         {
-            Slot s = _slots[i];
-            Gizmos.DrawLine(s.pos, s.pos + Vector3.up * 3f);
+            Vector3 pos = transform.position + ((Quaternion.Euler(0f, 360f / _slots.Length * i + _currentOffset + _angleOffset, 0f)) * Vector3.forward) * _radius;
+
+            Gizmos.color = Color.white;
+            if (_slots[i].beginMask)
+            {
+                Gizmos.color = _slots[i].beginMask.GetComponent<MaskHolder>().gizmoColor;
+            }
+            
+            Gizmos.DrawSphere(pos, 0.5f);
         }
     }
 }

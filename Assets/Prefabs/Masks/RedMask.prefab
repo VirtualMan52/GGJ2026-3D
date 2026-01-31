@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5799839006529859941}
   - component: {fileID: 3098181231503597537}
   m_Layer: 0
-  m_Name: BlueMask
+  m_Name: RedMask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 5685887982052600821}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.483, z: -0.16}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ae7815dbe8de7941b502f5b6cce3d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaskHolder
-  Stealable: 0
-  maskID: blue
+  maskID: red
+  gizmoColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &7057019276770770907
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1eb6258e21847c3488942f2f186f56f9, type: 2}
+  - {fileID: 2100000, guid: fb4cf4ce4de15434d86d9c9a2f33f8c6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
