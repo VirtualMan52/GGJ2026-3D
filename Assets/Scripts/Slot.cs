@@ -31,6 +31,12 @@ public class Slot
                 GameObject m = GameObject.Instantiate(beginMask);
                 m.transform.parent = c.transform;
                 m.transform.localPosition = Vector3.zero;
+
+                if (c.GetComponentInChildren<CharacterLoader>())
+                {
+                    CharacterLoader cl = c.GetComponentInChildren<CharacterLoader>();
+                    cl.colorID = m.GetComponent<MaskHolder>().maskID;
+                } 
             }
         }
     }
