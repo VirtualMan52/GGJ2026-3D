@@ -121,10 +121,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LevelClicking
-        m_Mode: 5
+      - m_Target: {fileID: 470895496907040093}
+        m_TargetAssemblyTypeName: VictoryMenuScript, Assembly-CSharp
+        m_MethodName: BackToMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 5114992748333019234}
   - component: {fileID: 7029988478720210763}
   m_Layer: 5
-  m_Name: BackToMenuButton
+  m_Name: NextSceneButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,10 +391,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LevelClicking
-        m_Mode: 5
+      - m_Target: {fileID: 470895496907040093}
+        m_TargetAssemblyTypeName: VictoryMenuScript, Assembly-CSharp
+        m_MethodName: LoadNextScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -552,6 +552,7 @@ GameObject:
   - component: {fileID: 1001359097327009260}
   - component: {fileID: 3926725716156908309}
   - component: {fileID: 5800350660590345359}
+  - component: {fileID: 470895496907040093}
   m_Layer: 5
   m_Name: CanvasVictoire
   m_TagString: Untagged
@@ -645,6 +646,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &470895496907040093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580067011473020453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce1ee83f3ced5245a0fca2abbac0fc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  nextScene: MainMenuGame
 --- !u!1 &7849837323773947908
 GameObject:
   m_ObjectHideFlags: 0

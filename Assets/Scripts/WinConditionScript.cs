@@ -8,6 +8,8 @@ public class WinConditionScript : MonoBehaviour
     public bool levelComplete = false;
     public GameObject UIPrefab;
 
+    public string nextScene = "MainMenuGame";
+
     private static WinConditionScript _singleton;
     public static WinConditionScript Singleton
     {
@@ -27,7 +29,11 @@ public class WinConditionScript : MonoBehaviour
         if (!levelComplete)
         {
             levelComplete = CheckLevelComplete();
-            if (levelComplete) Instantiate(UIPrefab);
+            if (levelComplete) {
+                GameObject ui = Instantiate(UIPrefab);
+                ui.GetComponent<VictoryMenuScript>().nextScene = nextScene;
+            }
+            ;
         }
     }
 
