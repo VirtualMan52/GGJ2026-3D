@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 45bac085eb460bb449708754b2134a66
+guid: ea1d7d57b7e32164db9099791042de43
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: kadir-celep-Nk8hqt-BgPw-unsplash
-    second: {fileID: 2800000, guid: 3b61dd2dfec35ec47b9efa65e6ce08b4, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

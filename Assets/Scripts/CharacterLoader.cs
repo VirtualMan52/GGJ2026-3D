@@ -6,6 +6,7 @@ public class CharacterLoader : MonoBehaviour
 {
     [SerializeField] private string loadType = "random";
     public string colorID = "none";
+    [SerializeField] private Mesh[] bodyMeshes;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,6 +30,8 @@ public class CharacterLoader : MonoBehaviour
             mats.Add(Resources.Load<Material>("skin/skin" + Random.Range(1,7)));
 
             model.SetMaterials(mats);
+
+            GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = bodyMeshes[Random.Range(0, bodyMeshes.Length)];
         }
     }
 }
