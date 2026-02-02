@@ -8,7 +8,7 @@ public class WinConditionScript : MonoBehaviour
     public bool levelComplete = false;
     public GameObject UIPrefab;
 
-    public string nextScene = "MainMenuGame";
+    public string nextScene = "MainMenu";
 
     private static WinConditionScript _singleton;
     public static WinConditionScript Singleton

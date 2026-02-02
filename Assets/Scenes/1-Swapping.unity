@@ -171,13 +171,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinCondition
       objectReference: {fileID: 0}
-    - target: {fileID: 5404932464199917273, guid: 23b1dfc6f8c546e469ac8583ab9a5dbc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9043659438552447783, guid: 23b1dfc6f8c546e469ac8583ab9a5dbc, type: 3}
       propertyPath: nextScene
-      value: StartMenuGame
+      value: 2-Timing
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1248,10 +1244,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4071732005639895968, guid: 195a32a366180124582a459f5d68dce6, type: 3}
-      propertyPath: AudioPrefab
-      value: 
-      objectReference: {fileID: 4151316909291241034, guid: 336ce0bb5d9d60f458a070810d21cba0, type: 3}
     - target: {fileID: 9049141895086742109, guid: 195a32a366180124582a459f5d68dce6, type: 3}
       propertyPath: m_Name
       value: MenuCanvas

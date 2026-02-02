@@ -7,7 +7,7 @@ public class MenuScript : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenuGame");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Audio()

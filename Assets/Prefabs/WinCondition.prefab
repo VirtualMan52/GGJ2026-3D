@@ -47,3 +47,4 @@ MonoBehaviour:
   lovers: []
   levelComplete: 0
   UIPrefab: {fileID: 5580067011473020453, guid: 983460c69f8700741a5bd69c0f5520c0, type: 3}
+  nextScene: MainMenu

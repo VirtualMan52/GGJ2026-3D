@@ -657,8 +657,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bce1ee83f3ced5245a0fca2abbac0fc2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  nextScene: MainMenuGame
+  m_EditorClassIdentifier: Assembly-CSharp::VictoryMenuScript
+  nextScene: MainMenu
 --- !u!1 &7849837323773947908
 GameObject:
   m_ObjectHideFlags: 0

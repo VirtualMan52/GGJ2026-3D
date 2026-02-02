@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class VictoryMenuScript : MonoBehaviour
 {
-    public string nextScene = "StartMenuGame";
+    public string nextScene = "MainMenu";
 
     public void LoadNextScene()
     {
@@ -12,6 +12,6 @@ public class VictoryMenuScript : MonoBehaviour
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene("StartMenuGame");
+        SceneManager.LoadScene("MainMenu");
     }
 }

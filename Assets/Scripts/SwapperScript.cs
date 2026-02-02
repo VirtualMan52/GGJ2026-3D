@@ -8,9 +8,16 @@ public class SwapperScript : MonoBehaviour
 
     [SerializeField] private GameObject _heldObject;
 
+    private bool speedUp = false;
+
     void Update()
     {
-        if (!WinConditionScript.Singleton || WinConditionScript.Singleton.levelComplete) return;
+        if (!WinConditionScript.Singleton || WinConditionScript.Singleton.levelComplete)
+        {
+            // If is won, don't do mouse checks and stop speed up
+            Time.timeScale = 1;
+            return;
+        }
 
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
@@ -91,5 +98,14 @@ public class SwapperScript : MonoBehaviour
 
         if (_heldObject) _heldObject.GetComponent<SlotFollowerScript>().highlight = 2;
         if (_heldObject && Mouse.current.leftButton.ReadValue() < 0.1) _heldObject = null;
+
+        if (speedUp) Time.timeScale = 3;
+        else Time.timeScale = 1;
+    }
+
+    public void OnSpeedUp(InputValue value)
+    {
+        Debug.Log(value.isPressed);
+        speedUp = value.isPressed;
     }
 }
