@@ -34,7 +34,7 @@ public class SwapperScript : MonoBehaviour
                     if (hitObject.GetComponent<LoverScript>()) canSwap = false;
 
                     // Don't swap if too far!
-                    if (canSwap && _heldObject.GetComponent<SwappableScript>().swapRange < Vector3.Distance(_heldObject.transform.position, hitObject.transform.position)) canSwap = false;
+                    if (canSwap && _heldObject.GetComponent<SwappableScript>().swapRange + 0.2f < Vector3.Distance(_heldObject.transform.position, hitObject.transform.position)) canSwap = false;
 
                     // Don't swap if it has a mask and you don't!
                     if (canSwap && hitObject.GetComponentInChildren<MaskHolder>())

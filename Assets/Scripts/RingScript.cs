@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -11,7 +12,8 @@ public class RingScript : MonoBehaviour
     private float _currentOffset;
 
     public Slot[] _slots = new Slot[0];
-
+    [SerializeField] private Transform flooring;
+    
     public void Awake()
     {
         SetSlots();
@@ -21,6 +23,8 @@ public class RingScript : MonoBehaviour
             s.ring = this;
             s.Initialize();
         }
+
+        if (flooring) flooring.localScale = new Vector3(_radius,_radius,_radius) / 5 + new Vector3(0.1f,0.1f,0.1f); // radius / 10 * 2
     }
 
     // Update is called once per frame
