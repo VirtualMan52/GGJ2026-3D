@@ -6,9 +6,23 @@ public class SwapperScript : MonoBehaviour
 {
     [SerializeField] private LayerMask _mouseLayers;
 
-    [SerializeField] private GameObject _heldObject;
+    [SerializeField] public GameObject heldObject;
 
     private bool speedUp = false;
+
+    private static SwapperScript _singleton;
+    public static SwapperScript Singleton
+    {
+        get => _singleton;
+        private set
+        {
+            _singleton = value;
+        }
+    }
+    private void Awake()
+    {
+        Singleton = this;
+    }
 
     void Update()
     {
@@ -28,7 +42,7 @@ public class SwapperScript : MonoBehaviour
             
             //TODO: Highlight item
 
-            if (_heldObject)
+            if (heldObject)
             {
                 // Someone highlighted...
                 if (hitObject.GetComponent<SlotFollowerScript>())
@@ -41,12 +55,12 @@ public class SwapperScript : MonoBehaviour
                     if (hitObject.GetComponent<LoverScript>()) canSwap = false;
 
                     // Don't swap if too far!
-                    if (canSwap && _heldObject.GetComponent<SwappableScript>().swapRange + 0.2f < Vector3.Distance(_heldObject.transform.position, hitObject.transform.position)) canSwap = false;
+                    if (canSwap && heldObject.GetComponent<SwappableScript>().swapRange + 0.2f < Vector3.Distance(heldObject.transform.position, hitObject.transform.position)) canSwap = false;
 
                     // Don't swap if it has a mask and you don't!
                     if (canSwap && hitObject.GetComponentInChildren<MaskHolder>())
                     {
-                        MaskHolder myMask = _heldObject.GetComponentInChildren<MaskHolder>();
+                        MaskHolder myMask = heldObject.GetComponentInChildren<MaskHolder>();
                         MaskHolder hitMask = hitObject.GetComponentInChildren<MaskHolder>();
 
                         if (myMask == null || myMask.maskID != hitMask.maskID) canSwap = false;
@@ -58,12 +72,12 @@ public class SwapperScript : MonoBehaviour
                         if (canSwap)
                         {
                             Slot hitSlot = hitsf.GetSlot();
-                            Slot heldSlot = _heldObject.GetComponent<SlotFollowerScript>().GetSlot();
+                            Slot heldSlot = heldObject.GetComponent<SlotFollowerScript>().GetSlot();
 
                             hitsf.ChangeSlot(heldSlot);
-                            _heldObject.GetComponent<SlotFollowerScript>().ChangeSlot(hitSlot);
+                            heldObject.GetComponent<SlotFollowerScript>().ChangeSlot(hitSlot);
                         }
-                        _heldObject = null;
+                        heldObject = null;
                     }
                 } else if (hitObject.GetComponentInChildren<MaskTableScript>()) // Mask table highlighted...
                 {
@@ -74,14 +88,18 @@ public class SwapperScript : MonoBehaviour
 
                         if (Mouse.current.leftButton.ReadValue() < 0.1) // On release...
                         {
-                            MaskHolder heldMask = _heldObject.GetComponentInChildren<MaskHolder>();
+                            MaskHolder heldMask = heldObject.GetComponentInChildren<MaskHolder>();
                             MaskHolder hitMask = mt.mask;
 
-                            mt.mask.transform.SetParent(_heldObject.transform,true);
-                            heldMask.transform.SetParent(mt.transform,true);
-                            mt.mask = heldMask;
+                            mt.mask.transform.SetParent(heldObject.transform,true);
+                            if (heldMask)
+                            {
+                                heldMask.transform.SetParent(mt.transform, true);
+                                mt.mask = heldMask;
+                            }
+                            else mt.mask = null;
 
-                            _heldObject = null;
+                                heldObject = null;
                         }
                     }
                 }
@@ -91,13 +109,13 @@ public class SwapperScript : MonoBehaviour
                 if (hitObject.GetComponent<SlotFollowerScript>() && hitObject.GetComponent<SwappableScript>()) 
                 {
                     hitObject.GetComponent<SlotFollowerScript>().highlight = 2;
-                    if (Mouse.current.leftButton.ReadValue() > 0) _heldObject = hitObject;
+                    if (Mouse.current.leftButton.ReadValue() > 0) heldObject = hitObject;
                 }
             }
         }
 
-        if (_heldObject) _heldObject.GetComponent<SlotFollowerScript>().highlight = 2;
-        if (_heldObject && Mouse.current.leftButton.ReadValue() < 0.1) _heldObject = null;
+        if (heldObject) heldObject.GetComponent<SlotFollowerScript>().highlight = 2;
+        if (heldObject && Mouse.current.leftButton.ReadValue() < 0.1) heldObject = null;
 
         if (speedUp) Time.timeScale = 3;
         else Time.timeScale = 1;
