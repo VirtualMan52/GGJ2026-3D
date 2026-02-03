@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,12 @@ public class MenuScript : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        TransitionScript.TransitionTo("MainMenu");
+    }
+
+    public void LoadLevel(string name)
+    {
+        TransitionScript.TransitionTo(name);
     }
 
     public void Audio()
@@ -20,6 +26,6 @@ public class MenuScript : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        TransitionScript.TransitionTo(SceneManager.GetActiveScene().name);
     }
 }

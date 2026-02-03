@@ -7,11 +7,11 @@ public class VictoryMenuScript : MonoBehaviour
 
     public void LoadNextScene()
     {
-        SceneManager.LoadScene(nextScene);
+        TransitionScript.TransitionTo(nextScene);
     }
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        TransitionScript.TransitionTo("MainMenu");
     }
 }

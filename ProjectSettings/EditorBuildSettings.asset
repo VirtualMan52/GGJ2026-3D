@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/2-Timing.unity
     guid: cc56e03d587c1dc42bf6db304eab1baf
+  - enabled: 1
+    path: Assets/Scenes/3-MaskIntroduction.unity
+    guid: 3423d29336edc8e49ad29880bb01377d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
