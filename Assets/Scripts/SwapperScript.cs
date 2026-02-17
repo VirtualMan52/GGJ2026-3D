@@ -81,8 +81,9 @@ public class SwapperScript : MonoBehaviour
                     }
                 } else if (hitObject.GetComponentInChildren<MaskTableScript>()) // Mask table highlighted...
                 {
+                    bool withinRange = heldObject.GetComponent<SwappableScript>().swapRange + 0.2f >= Vector3.Distance(heldObject.transform.position, hitObject.transform.position);
                     MaskTableScript mt = hitObject.GetComponentInChildren<MaskTableScript>();
-                    if (mt.mask)
+                    if (withinRange)
                     {
                         mt.highlight = 2;
 
@@ -91,7 +92,11 @@ public class SwapperScript : MonoBehaviour
                             MaskHolder heldMask = heldObject.GetComponentInChildren<MaskHolder>();
                             MaskHolder hitMask = mt.mask;
 
-                            mt.mask.transform.SetParent(heldObject.transform,true);
+                            if (hitMask)
+                            {
+                                hitMask.transform.SetParent(heldObject.transform, true);
+                            }
+
                             if (heldMask)
                             {
                                 heldMask.transform.SetParent(mt.transform, true);
