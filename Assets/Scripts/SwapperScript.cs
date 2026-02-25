@@ -45,7 +45,7 @@ public class SwapperScript : MonoBehaviour
             if (heldObject)
             {
                 // Someone highlighted...
-                if (hitObject.GetComponent<SlotFollowerScript>())
+                if (hitObject.GetComponent<SlotFollowerScript>() && !hitObject.GetComponentInChildren<MaskTableScript>())
                 {
                     SlotFollowerScript hitsf = hitObject.GetComponent<SlotFollowerScript>();
 
@@ -128,7 +128,6 @@ public class SwapperScript : MonoBehaviour
 
     public void OnSpeedUp(InputValue value)
     {
-        Debug.Log(value.isPressed);
         speedUp = value.isPressed;
     }
 }
