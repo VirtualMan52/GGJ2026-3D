@@ -3,7 +3,8 @@ using UnityEngine;
 public class MaskTableScript : MonoBehaviour
 {
     public MaskHolder mask;
-    public int highlight = 0;
+    private int _reachable = 0;
+    private int _hovered = 0;
 
     [SerializeField] private CircleRenderer _highlightIndicator;
 
@@ -19,12 +20,27 @@ public class MaskTableScript : MonoBehaviour
     {
         if (_highlightIndicator)
         {
-            if (highlight > 0)
+            float desiredRadius = 0f;
+
+            if (_reachable > 0)
             {
-                highlight--;
-                _highlightIndicator.radius = Mathf.Lerp(_highlightIndicator.radius, 0.5f, 0.125f);
+                _reachable--;
+                desiredRadius = 0.5f;
             }
-            else _highlightIndicator.radius = Mathf.Lerp(_highlightIndicator.radius, 0f, 0.125f);
+            if (_hovered > 0)
+            {
+                _hovered--;
+                desiredRadius = 0.75f;
+            }
+
+            _highlightIndicator.radius = Mathf.Lerp(_highlightIndicator.radius, desiredRadius, 0.125f);
         }
+    }
+
+    public void Highlighted(string type)
+    {
+        if (type == "Reachable") _reachable = 2;
+        if (type == "Hovered") _hovered = 2;
+        if (type == "Clicked") _highlightIndicator.radius = 0.625f;
     }
 }

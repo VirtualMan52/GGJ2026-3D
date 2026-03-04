@@ -1,14 +1,17 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
+using System.Net;
 
 public class SwapperScript : MonoBehaviour
 {
     [SerializeField] private LayerMask _mouseLayers;
 
-    [SerializeField] public GameObject heldObject;
-
     private bool speedUp = false;
+    private bool mouseHeld = false;
+    private bool mouseClick = false;
+
+    private static List<SwappableScript> swappables = new List<SwappableScript>();
 
     private static SwapperScript _singleton;
     public static SwapperScript Singleton
@@ -22,6 +25,7 @@ public class SwapperScript : MonoBehaviour
     private void Awake()
     {
         Singleton = this;
+        swappables.Clear();
     }
 
     void Update()
@@ -33,94 +37,88 @@ public class SwapperScript : MonoBehaviour
             return;
         }
 
+        if (Mouse.current.leftButton.ReadValue() > 0)
+        {
+            mouseClick = !mouseHeld;
+            mouseHeld = true;
+        } else
+        {
+            mouseHeld = false;
+        }
+
+        // Mouse check
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, _mouseLayers))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, _mouseLayers, QueryTriggerInteraction.Ignore))
         {
-            GameObject hitObject = hit.collider.gameObject;
-            
-            //TODO: Highlight item
+            GameObject other = hit.collider.gameObject;
 
-            if (heldObject)
+            List<SwappableScript> canReach = new List<SwappableScript>();
+            foreach (SwappableScript s in swappables)
             {
-                // Someone highlighted...
-                if (hitObject.GetComponent<SlotFollowerScript>() && !hitObject.GetComponentInChildren<MaskTableScript>())
+                if (s.reachable.Contains(other)) canReach.Add(s);
+            }
+
+            if (canReach.Count > 0)
+            {
+                // TODO: currently selected is priority
+                SwappableScript me = canReach[0];
+
+                other.SendMessage("Highlighted", "Hovered");
+
+                if (mouseClick)
                 {
-                    SlotFollowerScript hitsf = hitObject.GetComponent<SlotFollowerScript>();
-
-                    bool canSwap = true;
-
-                    // Don't swap with lover!
-                    if (hitObject.GetComponent<LoverScript>()) canSwap = false;
-
-                    // Don't swap if too far!
-                    if (canSwap && heldObject.GetComponent<SwappableScript>().swapRange + 0.2f < Vector3.Distance(heldObject.transform.position, hitObject.transform.position)) canSwap = false;
-
-                    // Don't swap if it has a mask and you don't!
-                    if (canSwap && hitObject.GetComponentInChildren<MaskHolder>())
+                    other.SendMessage("Highlighted", "Clicked");
+                    
+                    if (other.GetComponent<MaskTableScript>())
                     {
-                        MaskHolder myMask = heldObject.GetComponentInChildren<MaskHolder>();
-                        MaskHolder hitMask = hitObject.GetComponentInChildren<MaskHolder>();
+                        // Swap with table!
+                        MaskTableScript mt = other.GetComponent<MaskTableScript>();
+                        MaskHolder hitMask = mt.mask;
+                        MaskHolder myMask = me.GetComponentInChildren<MaskHolder>();
 
-                        if (myMask == null || myMask.maskID != hitMask.maskID) canSwap = false;
-                    }
+                        if (hitMask)
+                        {
+                            hitMask.transform.SetParent(me.transform, true);
+                        }
 
-                    if (canSwap) hitObject.GetComponent<SlotFollowerScript>().highlight = 2; // Highlight item if you can swap!
-                    if (Mouse.current.leftButton.ReadValue() < 0.1) // On release...
+                        if (myMask)
+                        {
+                            myMask.transform.SetParent(mt.transform, true);
+                            mt.mask = myMask;
+                        }
+                        else mt.mask = null;
+
+                    } else if (other.GetComponent<SlotFollowerScript>())
                     {
+                        // Check for swapping!
+                        bool canSwap = true;
+                        SlotFollowerScript hitsf = other.GetComponent<SlotFollowerScript>();
+
+                        if (!hitsf.swappable) canSwap = false;
+
+                        if (other.GetComponentInChildren<MaskHolder>()) { // If they have a mask...
+                            if(!me.GetComponentInChildren<MaskHolder>() || // You don't have a mask OR
+                            other.GetComponentInChildren<MaskHolder>().maskID != me.GetComponentInChildren<MaskHolder>().maskID) // This mask and yours aren't the same...
+                                canSwap = false; // Don't swap
+                        } 
+
                         if (canSwap)
                         {
+                            // Swap !
+                            SlotFollowerScript mysf = me.GetComponent<SlotFollowerScript>();
+
                             Slot hitSlot = hitsf.GetSlot();
-                            Slot heldSlot = heldObject.GetComponent<SlotFollowerScript>().GetSlot();
+                            Slot mySlot = mysf.GetSlot();
 
-                            hitsf.ChangeSlot(heldSlot);
-                            heldObject.GetComponent<SlotFollowerScript>().ChangeSlot(hitSlot);
-                        }
-                        heldObject = null;
-                    }
-                } else if (hitObject.GetComponentInChildren<MaskTableScript>()) // Mask table highlighted...
-                {
-                    bool withinRange = heldObject.GetComponent<SwappableScript>().swapRange + 0.2f >= Vector3.Distance(heldObject.transform.position, hitObject.transform.position);
-                    MaskTableScript mt = hitObject.GetComponentInChildren<MaskTableScript>();
-                    if (withinRange)
-                    {
-                        mt.highlight = 2;
-
-                        if (Mouse.current.leftButton.ReadValue() < 0.1) // On release...
-                        {
-                            MaskHolder heldMask = heldObject.GetComponentInChildren<MaskHolder>();
-                            MaskHolder hitMask = mt.mask;
-
-                            if (hitMask)
-                            {
-                                hitMask.transform.SetParent(heldObject.transform, true);
-                            }
-
-                            if (heldMask)
-                            {
-                                heldMask.transform.SetParent(mt.transform, true);
-                                mt.mask = heldMask;
-                            }
-                            else mt.mask = null;
-
-                                heldObject = null;
+                            hitsf.ChangeSlot(mySlot);
+                            mysf.ChangeSlot(hitSlot);
                         }
                     }
-                }
-                
-            } else
-            {
-                if (hitObject.GetComponent<SlotFollowerScript>() && hitObject.GetComponent<SwappableScript>()) 
-                {
-                    hitObject.GetComponent<SlotFollowerScript>().highlight = 2;
-                    if (Mouse.current.leftButton.ReadValue() > 0) heldObject = hitObject;
                 }
             }
         }
-
-        if (heldObject) heldObject.GetComponent<SlotFollowerScript>().highlight = 2;
-        if (heldObject && Mouse.current.leftButton.ReadValue() < 0.1) heldObject = null;
 
         if (speedUp) Time.timeScale = 3;
         else Time.timeScale = 1;
@@ -129,5 +127,16 @@ public class SwapperScript : MonoBehaviour
     public void OnSpeedUp(InputValue value)
     {
         speedUp = value.isPressed;
+    }
+
+    public void AddSwappable(SwappableScript script)
+    {
+        swappables.Add(script);
+    }
+
+    public SwappableScript GetSelectedSwappable()
+    {
+        // TODO!!!!!
+        return swappables[0];
     }
 }

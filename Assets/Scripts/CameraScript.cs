@@ -19,9 +19,9 @@ public class CameraScript : MonoBehaviour
             Camera.main.transform.position = followPosition + offset;
         } else
         {
-            if (SwapperScript.Singleton && SwapperScript.Singleton.heldObject)
+            if (SwapperScript.Singleton && SwapperScript.Singleton.GetSelectedSwappable())
             {
-                target = SwapperScript.Singleton.heldObject;
+                target = SwapperScript.Singleton.GetSelectedSwappable().gameObject;
                 offset = Camera.main.transform.position - target.transform.position;
             }
         }

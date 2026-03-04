@@ -213,7 +213,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: -0.5, z: 0}
@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlotFollowerScript
   highlight: 0
+  highlightRestRadius: 0
   _highlightIndicator: {fileID: 4899730266273899117}
 --- !u!1001 &6266915777747781131
 PrefabInstance:

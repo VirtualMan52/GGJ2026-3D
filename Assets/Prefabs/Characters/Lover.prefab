@@ -5085,7 +5085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1272ac210bf6b7247955b4f3a0c33040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlotFollowerScript
-  highlight: 0
+  swappable: 0
   _highlightIndicator: {fileID: 4899730266273899117}
 --- !u!114 &1664095897487363455
 MonoBehaviour:

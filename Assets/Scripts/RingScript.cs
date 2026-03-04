@@ -24,7 +24,7 @@ public class RingScript : MonoBehaviour
             s.Initialize();
         }
 
-        if (flooring) flooring.localScale = new Vector3(_radius,_radius,_radius) / 5 + new Vector3(0.1f,0.1f,0.1f); // radius / 10 * 2
+        UpdateFlooring();
     }
 
     // Update is called once per frame
@@ -43,6 +43,11 @@ public class RingScript : MonoBehaviour
         }
     }
 
+    private void UpdateFlooring()
+    {
+        if (flooring) flooring.localScale = new Vector3(_radius, _radius, _radius) / 5 + new Vector3(0.1f, 0.1f, 0.1f); // radius / 10 * 2
+    }
+
     private void OnDrawGizmos()
     {
         for (int i = 0; i < _slots.Length; i++)
@@ -57,5 +62,7 @@ public class RingScript : MonoBehaviour
             
             Gizmos.DrawSphere(pos, 0.5f);
         }
+
+        UpdateFlooring();
     }
 }
