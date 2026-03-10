@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 579cf1dd8d9784044a650a76a4109c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  resolution: 15
+  resolution: 30
   width: 0.1
   radius: 0
   line: {fileID: 5165435145058293533}
@@ -5087,8 +5087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1272ac210bf6b7247955b4f3a0c33040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlotFollowerScript
-  highlight: 0
-  highlightRestRadius: 0.1
+  swappable: 1
   _highlightIndicator: {fileID: 6440011939543762729}
 --- !u!114 &7664436401096310272
 MonoBehaviour:
@@ -5103,6 +5102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _rangeIndicator: {fileID: 8095131313351097439}
+  _trigger: {fileID: 0}
   swapRange: 3
   reachable: []
 --- !u!135 &3314986338539616867
@@ -5171,7 +5171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 579cf1dd8d9784044a650a76a4109c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  resolution: 30
+  resolution: 60
   width: 0.05
   radius: 0
   line: {fileID: 4387496881292258019}

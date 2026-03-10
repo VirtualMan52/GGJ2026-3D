@@ -5,15 +5,16 @@ using UnityEngine.SceneManagement;
 public class MenuScript : MonoBehaviour
 {
     public GameObject AudioPrefab;
+    public GameObject[] canvases;
 
     public void MainMenu()
     {
-        TransitionScript.TransitionTo("MainMenu");
+        if (!VolumeSettings.settingsOpen) TransitionScript.TransitionTo("MainMenu");
     }
 
     public void LoadLevel(string name)
     {
-        TransitionScript.TransitionTo(name);
+        if (!VolumeSettings.settingsOpen) TransitionScript.TransitionTo(name);
     }
 
     public void Audio()
@@ -26,6 +27,15 @@ public class MenuScript : MonoBehaviour
 
     public void Restart()
     {
-        TransitionScript.TransitionTo(SceneManager.GetActiveScene().name);
+        if (!VolumeSettings.settingsOpen) TransitionScript.TransitionTo(SceneManager.GetActiveScene().name);
+    }
+
+    public void ToggleMenu()
+    {
+        if (VolumeSettings.settingsOpen) return;
+        foreach (GameObject go in canvases)
+        {
+            go.SetActive(!go.activeSelf);
+        }
     }
 }

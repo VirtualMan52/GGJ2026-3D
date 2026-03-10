@@ -57,7 +57,7 @@ public class SwapperScript : MonoBehaviour
             List<SwappableScript> canReach = new List<SwappableScript>();
             foreach (SwappableScript s in swappables)
             {
-                if (s.reachable.Contains(other)) canReach.Add(s);
+                if (s.reachable.Contains(other) && s.CanSwap(other)) canReach.Add(s);
             }
 
             if (canReach.Count > 0)

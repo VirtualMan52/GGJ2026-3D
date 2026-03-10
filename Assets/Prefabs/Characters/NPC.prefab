@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 579cf1dd8d9784044a650a76a4109c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  resolution: 15
+  resolution: 30
   width: 0.1
   radius: 0
   line: {fileID: 3256728508844181991}
@@ -229,8 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1272ac210bf6b7247955b4f3a0c33040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlotFollowerScript
-  highlight: 0
-  highlightRestRadius: 0
+  swappable: 1
   _highlightIndicator: {fileID: 4899730266273899117}
 --- !u!1001 &6266915777747781131
 PrefabInstance:
