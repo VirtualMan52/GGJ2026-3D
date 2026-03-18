@@ -34,6 +34,7 @@ public class SwappableScript : MonoBehaviour
     public bool CanSwap(GameObject other)
     {
         if (Vector3.Distance(transform.position, other.transform.position) > swapRange + 0.2f) return false;
+        if (other.GetComponent<LoverScript>()) return false;
         return true;
     }
 
