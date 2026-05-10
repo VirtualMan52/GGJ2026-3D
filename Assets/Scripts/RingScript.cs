@@ -20,7 +20,7 @@ public class RingScript : MonoBehaviour
         for (int i = 0; i < _slots.Length; i++)
         {
             Slot s = _slots[i];
-            s.ring = this;
+            s.collection = gameObject;
             s.Initialize();
         }
 

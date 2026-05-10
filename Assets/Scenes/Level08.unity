@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 170175995}
   - component: {fileID: 170175994}
   - component: {fileID: 170175993}
+  - component: {fileID: 170175997}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -256,6 +257,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 69.706, y: 0, z: 0}
+--- !u!114 &170175997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170175992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fca04e7fa5d87f44bda5294544b5417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraScript
+  followX: 0
+  followZ: 0
+  bobX: 1
+  bobY: 1
 --- !u!1 &172942807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,7 +1612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9043659438552447783, guid: 23b1dfc6f8c546e469ac8583ab9a5dbc, type: 3}
       propertyPath: nextScene
-      value: Level9
+      value: Level09
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

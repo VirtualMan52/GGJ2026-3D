@@ -10,7 +10,7 @@ public class Slot
     public GameObject objAt;
     public Vector3 pos;
 
-    public RingScript ring;
+    public GameObject collection;
 
     public void Initialize()
     {

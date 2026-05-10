@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5388286949917337166}
   - component: {fileID: 5901790317000845234}
   - component: {fileID: 4461474699136328842}
+  - component: {fileID: 4721788993372003990}
   m_Layer: 0
   m_Name: Swapper
   m_TagString: Untagged
@@ -48,7 +49,8 @@ MonoBehaviour:
   _mouseLayers:
     serializedVersion: 2
     m_Bits: 192
-  _heldObject: {fileID: 0}
+  _swapSFX: {fileID: 4721788993372003990}
+  _maskSFX: {fileID: 0}
 --- !u!114 &4461474699136328842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,3 +81,22 @@ MonoBehaviour:
   m_DefaultActionMap: Actions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4721788993372003990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7512179180370732823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80fc30c071977c34d9c9ec4711adf32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  clips:
+  - {fileID: 8300000, guid: 1d6894fd75f0eef47b825e3080821624, type: 3}
+  - {fileID: 8300000, guid: ace9220706178ca4a982d2b6fd122d2c, type: 3}
+  - {fileID: 8300000, guid: b460338bbb2275042884e6cd559503a7, type: 3}
+  - {fileID: 8300000, guid: ab4df14fd283aa64781fa72eb5ddc25c, type: 3}
+  minPitch: 1
+  maxPitch: 1

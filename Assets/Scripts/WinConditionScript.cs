@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class WinConditionScript : MonoBehaviour
@@ -44,11 +45,15 @@ public class WinConditionScript : MonoBehaviour
         {
             bool hasPlayer = false;
             SlotFollowerScript sf = l.GetComponent<SlotFollowerScript>();
-            RingScript ring = sf.GetSlot().ring;
+            GameObject slotCollection = sf.GetSlot().collection;
 
-            foreach (Slot s in ring._slots)
+            if (slotCollection.GetComponent<RingScript>())
             {
-                if (s.objAt.GetComponent<SwappableScript>()) hasPlayer = true;
+                RingScript ring = slotCollection.GetComponent<RingScript>();
+                foreach (Slot s in ring._slots)
+                {
+                    if (s.objAt.GetComponent<SwappableScript>()) hasPlayer = true;
+                }
             }
 
             if (!hasPlayer) return false;

@@ -6,6 +6,8 @@ using System.Net;
 public class SwapperScript : MonoBehaviour
 {
     [SerializeField] private LayerMask _mouseLayers;
+    [SerializeField] private SFXPlayer _swapSFX;
+    [SerializeField] private SFXPlayer _maskSFX;
 
     private bool speedUp = false;
     private bool mouseHeld = false;
@@ -114,6 +116,8 @@ public class SwapperScript : MonoBehaviour
 
                             hitsf.ChangeSlot(mySlot);
                             mysf.ChangeSlot(hitSlot);
+
+                            _swapSFX.PlaySound();
                         }
                     }
                 }
